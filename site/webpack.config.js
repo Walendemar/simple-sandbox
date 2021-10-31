@@ -1,5 +1,7 @@
 const path = require('path');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const PATHS = {
     app: path.join(__dirname, 'src'),
     public: path.resolve(__dirname, 'public'),
@@ -20,6 +22,13 @@ const config = {
           { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Сайт',
+            template: path.resolve(__dirname, 'templates/template.html'),
+            filename: path.resolve(__dirname, 'public/build/index.html'),
+        }),
+    ],
     devServer: {
         static: {
             directory: PATHS.build,
