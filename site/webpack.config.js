@@ -8,6 +8,11 @@ const config = {
         filename: `[name].js`,
         path: path.resolve(__dirname, 'public/build'),
     },
+    module: {
+        rules: [
+          { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
+        ]
+    },
 };
 
 module.exports = config;
