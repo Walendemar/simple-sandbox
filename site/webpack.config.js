@@ -19,8 +19,21 @@ const config = {
     },
     module: {
         rules: [
-          { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
-          { test: /\.(js)$/, use: 'babel-loader' },
+            {
+                test: /\.css$/, use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            },
+            {
+                test: /\.(js|jsx)$/,
+                loader: require.resolve('babel-loader'),
+                options: {
+                    compact: false,
+                    cacheCompression: false,
+                    cacheDirectory: true,
+                },
+            },
         ]
     },
     plugins: [
