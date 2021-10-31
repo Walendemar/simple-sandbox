@@ -13,6 +13,18 @@ const config = {
           { test: /\.css$/, use: [ 'style-loader', 'css-loader' ] },
         ]
     },
+    devServer: {
+        static: {
+            directory: path.resolve(__dirname, 'public/build'),
+        },
+        compress: true,
+        port: '8070',
+        historyApiFallback: {
+            disableDotRule: true,
+        },
+        
+        hot: true,
+    },
 };
 
 module.exports = config;

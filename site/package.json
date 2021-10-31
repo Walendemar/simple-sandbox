@@ -2,7 +2,10 @@
     "name": "simple-sandbox",
     "version": "1.0.0",
     "license": "MIT",
-    "scripts": {},
+    "scripts": {
+        "build": "webpack",
+        "dev": "webpack serve"
+    },
     "browserslist": [
         "> 1%",
         "last 2 versions",
@@ -14,6 +17,7 @@
     },
     "devDependencies": {
         "webpack": "^5.61.0",
-        "webpack-cli": "^4.9.1"
+        "webpack-cli": "^4.9.1",
+        "webpack-dev-server": "^4.4.0"
     }
 }
