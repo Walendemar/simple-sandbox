@@ -1,12 +1,19 @@
 const path = require('path');
 
+const PATHS = {
+    app: path.join(__dirname, 'src'),
+    public: path.resolve(__dirname, 'public'),
+    build: path.resolve(__dirname, 'public/build'),
+};
+
 const config = {
     entry: {
-        app: path.join(__dirname, 'src'),
+        app: PATHS.app,
     },
     output: {
         filename: `[name].js`,
-        path: path.resolve(__dirname, 'public/build'),
+        path: PATHS.build,
+        publicPath: PATHS.public,
     },
     module: {
         rules: [
@@ -15,7 +22,7 @@ const config = {
     },
     devServer: {
         static: {
-            directory: path.resolve(__dirname, 'public/build'),
+            directory: PATHS.build,
         },
         compress: true,
         port: '8070',
