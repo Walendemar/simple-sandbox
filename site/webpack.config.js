@@ -44,6 +44,13 @@ const config = {
             filename: path.resolve(__dirname, 'public/build/index.html'),
         }),
     ],
+    resolve: {
+        extensions: ['.js', '.jsx'],
+        modules: ['node_modules'],
+        alias: {
+            '@components': path.resolve(PATHS.app, 'components'),
+        },
+    },
     devServer: {
         static: {
             directory: PATHS.build,
