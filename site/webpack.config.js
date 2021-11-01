@@ -1,6 +1,7 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const PATHS = {
     app: path.join(__dirname, 'src'),
@@ -21,10 +22,20 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.css$/, use: [
-                    'style-loader',
-                    'css-loader'
-                ]
+                test: /\.css$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: require.resolve('css-loader'),
+                        options: {
+                            modules: {
+                                localIdentName: '[name]__[local]__[hash:base64:5]',
+                            },
+                            importLoaders: 1,
+                        },
+                    },
+                    require.resolve('postcss-loader'),
+                ],
             },
             {
                 test: /\.(js|jsx)$/,
@@ -42,6 +53,9 @@ const config = {
             title: 'Сайт',
             template: path.resolve(__dirname, 'templates/template.html'),
             filename: path.resolve(__dirname, 'public/build/index.html'),
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
         }),
     ],
     resolve: {
