@@ -9,6 +9,7 @@ const PATHS = {
 };
 
 const config = {
+    mode: 'development',
     entry: {
         app: PATHS.app,
     },
