@@ -1,7 +1,8 @@
 import React from 'react';
+import Field from './components/Field';
 
 const App = () => (
-    <div>Config done!</div>
+    <Field />
 );
 
 export default App;
