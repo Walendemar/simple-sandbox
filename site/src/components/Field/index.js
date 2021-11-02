@@ -1,17 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import randomNumber from '@utilities/randomNumber';
+
+import generateField from '@utilities/generateField';
 
 import Cell from '@components/Cell';
 
 import styles from './Field.module.css';
-
-
-const CELL = {
-    id: undefined,
-    biome: undefined,
-    x: undefined,
-    y: undefined
-};
 
 const BIOMES = [
     'water',
@@ -20,20 +13,19 @@ const BIOMES = [
     'grass',
 ];
 
-const ARRAY_OF_FIELD = [];
-ARRAY_OF_FIELD.length = 100;
-ARRAY_OF_FIELD.fill(1, 0, 100);
-
 const Field = () => {
+    const startField = useMemo(() => generateField(), []);
+    const [field, setField] = useState(startField);
     const [objPos, setObjPos] = useState({
         x: 0,
         y: 0,
         id: 0
     });
 
+
     const handleMoveObject = useCallback((event) => {
         setObjPos(prevState => {
-            const newPosition = prevState;
+            const newPosition = { ...prevState};
 
             switch(event.key) {
                 case 'ArrowUp':
@@ -60,6 +52,10 @@ const Field = () => {
 
             newPosition.id = newPosition.y * 10 + newPosition.x;
 
+            if (field[newPosition.id].biome === 0) {
+                return { ...prevState };
+            }
+
             return { ...newPosition };
         })
 
@@ -71,12 +67,12 @@ const Field = () => {
 
     return (
         <div className={styles.root}>
-            {ARRAY_OF_FIELD.map( (item, index) => {
-                const isPlaced = objPos.id  === index;
-                const biome = useMemo(() => index === 0 ? 'sand' : BIOMES[randomNumber(2)], []);
+            {startField.map( item => {
+                const { id, biome } = item;
+                const isPlaced = objPos.id  === id;
 
                 return (
-                    <Cell key={index} id={index} biome={biome} isPlaced={isPlaced}/>
+                    <Cell key={id} id={id} biome={BIOMES[biome]} isPlaced={isPlaced}/>
                 );
         })}
         </div>
