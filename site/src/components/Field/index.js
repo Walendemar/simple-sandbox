@@ -58,7 +58,7 @@ const Field = () => {
                 const isPlaced = objPos.id  === index;
 
                 return (
-                    <Cell key={index} isPlaced={isPlaced}/>
+                    <Cell key={index} id={index} isPlaced={isPlaced}/>
                 );
         })}
         </div>

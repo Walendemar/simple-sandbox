@@ -7,3 +7,19 @@
     border: 1px dashed black;
     box-sizing: border-box;
 }
+
+.grass {
+    background-color: #6ECF00;
+}
+
+.earth {
+    background-color: #783c00;
+}
+
+.sand {
+    background-color: #fbec5d;
+}
+
+.water {
+    background-color: aqua;
+}
