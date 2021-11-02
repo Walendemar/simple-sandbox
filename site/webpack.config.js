@@ -63,6 +63,7 @@ const config = {
         modules: ['node_modules'],
         alias: {
             '@components': path.resolve(PATHS.app, 'components'),
+            '@utilities': path.resolve(PATHS.app, 'utilities'),
         },
     },
     devServer: {
