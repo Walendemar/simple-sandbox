@@ -1,7 +1,24 @@
-import Cell from '@components/Cell';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import randomNumber from '@utilities/randomNumber';
+
+import Cell from '@components/Cell';
 
 import styles from './Field.module.css';
+
+
+const CELL = {
+    id: undefined,
+    biome: undefined,
+    x: undefined,
+    y: undefined
+};
+
+const BIOMES = [
+    'water',
+    'sand',
+    'earth',
+    'grass',
+];
 
 const ARRAY_OF_FIELD = [];
 ARRAY_OF_FIELD.length = 100;
@@ -56,9 +73,10 @@ const Field = () => {
         <div className={styles.root}>
             {ARRAY_OF_FIELD.map( (item, index) => {
                 const isPlaced = objPos.id  === index;
+                const biome = useMemo(() => index === 0 ? 'sand' : BIOMES[randomNumber(2)], []);
 
                 return (
-                    <Cell key={index} id={index} isPlaced={isPlaced}/>
+                    <Cell key={index} id={index} biome={biome} isPlaced={isPlaced}/>
                 );
         })}
         </div>
